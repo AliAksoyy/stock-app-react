@@ -9,7 +9,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
-import LoginForm from '../components/LoginForm';
+import LoginForm, { loginSchema } from '../components/LoginForm';
+
+
 
 function Copyright(props) {
   return (
@@ -23,11 +25,14 @@ function Copyright(props) {
     </Typography>
   );
 }
-const valid=()=>{}
+
 const theme = createTheme();
 
 export default function Login() {
 
+  const login=(a)=> {
+console.log(a)
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,12 +68,12 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <Box component="form"  sx={{ mt: 1 }}>
+            <Box  sx={{ mt: 1 }}>
               <Formik
               initialValues={{email:"", password:""}}
-              validationSchema={valid}
+              validationSchema={loginSchema}
               onSubmit={(values,actions)=> {
-                console.log(values)
+                login(values)
                 actions.resetForm()
                 actions.setSubmitting(false)
               }}

@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Formik } from 'formik';
+import RegisterForm, { registerSchema } from '../components/RegisterForm';
 
 function Copyright(props) {
   return (
@@ -61,9 +63,18 @@ export default function Register() {
             <Typography component="h1" variant="h5">
               Register
             </Typography>
-            <Box component="form" sx={{ mt: 1 }}>
-            
-
+            <Box sx={{ mt: 1 }}>
+              <Formik
+              initialValues={{firstName:"", lastName:"", email:"", password:""}}
+              validationSchema={registerSchema}
+              onSubmit={(values,actions)=> {
+                console.log(values)
+                actions.resetForm()
+                actions.setSubmitting(false)
+              }}
+              component={(props)=> <RegisterForm {...props} />}
+              >
+              </Formik>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
