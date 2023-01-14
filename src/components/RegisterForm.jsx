@@ -77,7 +77,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         error={touched.password && Boolean(errors.password)}
         helperText={touched.password && errors.password}
          />
-         <LoadingButton size="large" variant="contained" loading={loading} loadingPosition="center" type="submit">Register</LoadingButton>
+         <LoadingButton size="large" variant="contained" loading={loading} loadingPosition="center" type="submit" sx={{marginBottom:"1rem"}}>Register</LoadingButton>
     </Box>   
     </Form>
   )

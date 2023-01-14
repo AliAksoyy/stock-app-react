@@ -75,14 +75,9 @@ export default function Register() {
               component={(props)=> <RegisterForm {...props} />}
               >
               </Formik>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/login" variant="body2">
+              <Grid container justifyContent="center" >
+                <Grid item >
+                  <Link  href="/login" variant="body2">
                     {"Already have an account ? Sign in"}
                   </Link>
                 </Grid>
