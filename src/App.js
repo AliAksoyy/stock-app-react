@@ -1,16 +1,11 @@
-import  Box  from '@mui/material/Box';
-import  Typography  from '@mui/material/Typography';
-import Ali from './Ali';
-
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/AppRouter"
 
 function App() {
   return (
-    <div>
-      <Box>
-        <Typography>Ali</Typography>
-        <Ali />
-      </Box>
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
