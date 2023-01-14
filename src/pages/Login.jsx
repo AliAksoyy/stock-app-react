@@ -80,12 +80,8 @@ console.log(a)
               component={(props)=> <LoginForm {...props}/> }
               >
               </Formik>
-              <Grid container mt={2} >
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+              <Grid container mt={2} justifyContent="center" >
+               
                 <Grid item>
                   <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}

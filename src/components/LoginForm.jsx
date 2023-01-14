@@ -31,6 +31,7 @@ const LoginForm = ({ values,errors,touched,handleChange,handleBlur}) => {
     <Form>
     <Box sx={flexColumn}>
         <TextField
+        sx={{width:"17.5rem"}}
          id="email"
          variant='outlined'
          label="Email*"
