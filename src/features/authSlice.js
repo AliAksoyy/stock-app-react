@@ -13,28 +13,29 @@ export const authSlice=createSlice({
     initialState,
     reducers:{
         fetchStart:(state)=>{
-            state.loading={...state, loading:true}
+            state.loading=true
         },
-        loginSucces:(state,{payload})=> {
-            state.currentUser={...state, currentUser:payload?.user?.username}
-            state.token={...state, token:payload?.key}
-            state.loading={...state, loading:false}
+        loginSuccess:(state,{payload})=> {
+            state.currentUser=payload?.user?.username
+            state.token=payload?.key
+            state.loading=false
         },
         logoutSuccess:(state)=> {
-            state.currentUser={...state, currentUser:null}
-            state.loading={...state, loading:false}
-            state.error={...state, error:false}
+            state.currentUser=null
+            state.loading=false
+            state.error=false
         },
         registerSuccess:(state,action)=> {
-            state.currentUser={...state, currentUser:action.payload?.username}
-            state.token={...state, token:action.payload?.token}
+            state.currentUser=action.payload?.username
+            state.token=action.payload?.token
+            state.loading=false
         },
         fetchFail:(state)=> {
-            state.error={...state, error:true}
+            state.error=true
         },
     },
 })
-export const {fetchFail,fetchStart,loginSucces,logoutSuccess,registerSuccess}=authSlice.actions
+export const {fetchFail,fetchStart,loginSuccess,logoutSuccess,registerSuccess}=authSlice.actions
 
 export default authSlice.reducer
 

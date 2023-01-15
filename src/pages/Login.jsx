@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import LoginForm, { loginSchema } from '../components/LoginForm';
+import useAuthCalls from '../hooks/useAuthCalls';
 
 
 
@@ -30,6 +31,7 @@ const theme = createTheme();
 
 export default function Login() {
 
+  const {login}=useAuthCalls()
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,7 +72,7 @@ export default function Login() {
               initialValues={{email:"", password:""}}
               validationSchema={loginSchema}
               onSubmit={(values,actions)=> {
-                console.log(values)
+                login(values)
                 actions.resetForm()
                 actions.setSubmitting(false)
               }}

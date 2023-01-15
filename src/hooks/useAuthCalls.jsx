@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, registerSuccess } from '../features/authSlice'
+import { fetchFail, fetchStart, registerSuccess,loginSuccess } from '../features/authSlice'
 
 
 
@@ -20,8 +20,19 @@ const register=async(value)=> {
         console.log(error)
     }
 }
+const login=async(value)=> {
+    dispatch(fetchStart())
+    try{
+    const {data}=  await axios.post(`${BASE_URL}account/auth/login/`, value)
+    console.log(data)
+        dispatch(loginSuccess(data))
+    }catch(error){
+        dispatch(fetchFail())
+        console.log(error)
+    }
+}
 
-  return {register}
+  return {register,login}
 }
 
 export default useAuthCalls
