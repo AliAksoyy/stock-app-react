@@ -6,6 +6,7 @@ import { LoadingButton } from '@mui/lab'
 import { Box } from '@mui/material'
 import { flexColumn } from '../styles/globalStyle'
 import { useSelector } from 'react-redux'
+import { grey } from '@mui/material/colors'
 
 export const registerSchema = Yup.object().shape({
 
@@ -93,7 +94,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         error={touched.password && Boolean(errors.password)}
         helperText={touched.password && errors.password}
          />
-         <LoadingButton size="large" variant="contained" loading={loading} loadingPosition="center" type="submit" sx={{marginBottom:"1rem"}}>Register</LoadingButton>
+         <LoadingButton size="large" variant="contained" loading={loading} loadingPosition="center" type="submit" sx={{marginBottom:"1rem", backgroundColor:grey[300]}}>Register</LoadingButton>
     </Box>   
     </Form>
   )

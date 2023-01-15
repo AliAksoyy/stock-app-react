@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import useAuthCalls from '../hooks/useAuthCalls';
 import MenuListItem from '../components/MenuListItem';
 import { Outlet } from 'react-router-dom';
+import { blueGrey } from '@mui/material/colors';
 
 
 const drawerWidth = 200;
@@ -47,10 +48,11 @@ function Dashboard(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
+      
       >
         <Toolbar  >
           <IconButton
-            color="inherit"
+            color='primary.dark'
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -61,9 +63,11 @@ function Dashboard(props) {
           <Typography sx={{flexGrow:1}} variant="h6" noWrap component="div">
             Stock App
           </Typography>
+          {currentUser && (
           <Typography onClick={()=>logout()} sx={{cursor:"pointer"}} variant="h6" noWrap component="div">
             Logout
           </Typography>
+          )}
         </Toolbar>
       </AppBar>
       <Box
@@ -84,6 +88,9 @@ function Dashboard(props) {
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
+          PaperProps={{
+            sx:{backgroundColor:blueGrey[900]}
+          }}
         >
           {drawer}
         </Drawer>
@@ -94,6 +101,9 @@ function Dashboard(props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
           open
+           PaperProps={{
+            sx:{backgroundColor:blueGrey[100]}
+          }}
         >
           {drawer}
         </Drawer>

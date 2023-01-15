@@ -6,6 +6,7 @@ import React from 'react'
 import { flexColumn } from '../styles/globalStyle'
 import * as yup from 'yup';
 import { useSelector } from "react-redux"
+import { grey } from "@mui/material/colors"
 
 
 export const loginSchema = yup.object().shape({
@@ -57,7 +58,7 @@ const LoginForm = ({ values,errors,touched,handleChange,handleBlur}) => {
          error={touched.password && Boolean(errors.password)}
          helperText={touched.password && errors.password}
          />
-         <LoadingButton size="large" loading={loading} loadingPosition="center" variant="contained" type="submit">Login</LoadingButton>
+         <LoadingButton size="large" loading={loading} loadingPosition="center" variant="contained" type="submit" sx={{backgroundColor:grey[300]}}>Login</LoadingButton>
     </Box>
     </Form>
   )
