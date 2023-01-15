@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Formik } from 'formik';
 import RegisterForm, { registerSchema } from '../components/RegisterForm';
-// import useAuthCalls from '../hooks/useAuthCalls';
+import useAuthCalls from '../hooks/useAuthCalls';
 
 function Copyright(props) {
   return (
@@ -29,6 +29,7 @@ const theme = createTheme();
 
 export default function Register() {
   
+  const {register}=useAuthCalls()
 
 
   return (
@@ -67,10 +68,11 @@ export default function Register() {
             </Typography>
             <Box sx={{ mt: 1 }}>
               <Formik
-              initialValues={{username:"",firt_name:"",last_name:"",email:"",password:""}}
+              initialValues={{username:"",first_name:"",last_name:"",email:"",password:""}}
               validationSchema={registerSchema}
               onSubmit={(values,actions)=> {
-                console.log(values)
+                console.log({...values, password2:values.password})
+                register({...values, password2:values.password})
                 actions.resetForm()
                 actions.setSubmitting(false)
               }}

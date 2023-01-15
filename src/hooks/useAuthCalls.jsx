@@ -12,7 +12,7 @@ const BASE_URL="https://14281.fullstack.clarusway.com/"
 const register=async(value)=> {
     dispatch(fetchStart())
     try{
-    const {data}=  await axios.post(`${BASE_URL}/account/register/`, value)
+    const {data}=  await axios.post(`${BASE_URL}account/register/`, value)
     console.log(data)
         dispatch(registerSuccess(data))
     }catch(error){
@@ -20,8 +20,6 @@ const register=async(value)=> {
         console.log(error)
     }
 }
-
-
 
   return {register}
 }
