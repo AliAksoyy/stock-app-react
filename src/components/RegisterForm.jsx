@@ -34,26 +34,37 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
     <Form>
     <Box sx={flexColumn}>
         <TextField
-        label="First Name"
-        id="firstName"
-        name="firstName"
+        label="User Name"
+        id="username"
+        name="username"
         variant="outlined"
-        value={values.firstName}
+        value={values.username}
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.firstName && Boolean(errors.firstName)}
-        helperText={touched.firstName && errors.firstName}
+        error={touched.username && Boolean(errors.username)}
+        helperText={touched.username && errors.username}
+         />
+        <TextField
+        label="First Name"
+        id="first_name"
+        name="first_name"
+        variant="outlined"
+        value={values.first_name}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.first_name && Boolean(errors.first_name)}
+        helperText={touched.first_name && errors.first_name}
          />
         <TextField
         label="Last Name"
-        id="lastName"
-        name="lastName"
+        id="last_name"
+        name="last_name"
         variant="outlined"
-        value={values.lastName}
+        value={values.last_name}
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.lastName && Boolean(errors.lastName)}
-        helperText={touched.lastName && errors.lastName}
+        error={touched.last_name && Boolean(errors.last_name)}
+        helperText={touched.last_name && errors.last_name}
          />
         <TextField
         label="Email"

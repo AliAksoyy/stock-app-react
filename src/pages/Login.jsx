@@ -30,9 +30,6 @@ const theme = createTheme();
 
 export default function Login() {
 
-  const login=(a)=> {
-console.log(a)
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,7 +70,7 @@ console.log(a)
               initialValues={{email:"", password:""}}
               validationSchema={loginSchema}
               onSubmit={(values,actions)=> {
-                login(values)
+                
                 actions.resetForm()
                 actions.setSubmitting(false)
               }}
