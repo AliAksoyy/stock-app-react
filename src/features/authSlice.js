@@ -13,19 +13,24 @@ export const authSlice=createSlice({
     initialState,
     reducers:{
         fetchStart:(state)=>{
-            state.loading=true
+            state.loading={...state, loading:true}
         },
-        loginSucces:(state,action)=> {
-
+        loginSucces:(state,{payload})=> {
+            state.currentUser={...state, currentUser:payload?.user?.username}
+            state.token={...state, token:payload?.key}
+            state.loading={...state, loading:false}
         },
-        logoutSuccess:(state,action)=> {
-
+        logoutSuccess:(state)=> {
+            state.currentUser={...state, currentUser:null}
+            state.loading={...state, loading:false}
+            state.error={...state, error:false}
         },
         registerSuccess:(state,action)=> {
-
+            state.currentUser={...state, currentUser:action.payload?.username}
+            state.token={...state, token:action.payload?.token}
         },
         fetchFail:(state)=> {
-
+            state.error={...state, error:true}
         },
     },
 })

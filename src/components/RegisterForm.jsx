@@ -8,10 +8,13 @@ import { flexColumn } from '../styles/globalStyle'
 
 export const registerSchema = Yup.object().shape({
 
-    firstName: Yup.string()
+    username: Yup.string()
       .max(20, "first name must have less than 20 chars")
       .required(),
-    lastName: Yup.string()
+    first_name: Yup.string()
+      .max(20, "first name must have less than 20 chars")
+      .required(),
+    last_name: Yup.string()
       .max(20, "last name must have less than 20 chars")
       .required(),
   
@@ -38,7 +41,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         id="username"
         name="username"
         variant="outlined"
-        value={values.username}
+        value={values.username || ""}
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.username && Boolean(errors.username)}
@@ -49,7 +52,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         id="first_name"
         name="first_name"
         variant="outlined"
-        value={values.first_name}
+        value={values.first_name || ""}
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.first_name && Boolean(errors.first_name)}
@@ -60,7 +63,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         id="last_name"
         name="last_name"
         variant="outlined"
-        value={values.last_name}
+        value={values.last_name || ""}
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.last_name && Boolean(errors.last_name)}
@@ -71,7 +74,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         id="email"
         name="email"
         variant="outlined"
-        value={values.email}
+        value={values.email || ""}
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.email && Boolean(errors.email)}
@@ -82,7 +85,7 @@ const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
         id="password"
         name="password"
         variant="outlined"
-        value={values.password}
+        value={values.password || ""}
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.password && Boolean(errors.password)}

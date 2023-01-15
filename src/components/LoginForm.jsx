@@ -38,7 +38,7 @@ const LoginForm = ({ values,errors,touched,handleChange,handleBlur}) => {
          name="email"
          type="email"
          onBlur={handleBlur}
-         value={values.email}
+         value={values.email || ""}
          onChange={handleChange}
          error={touched.email && Boolean(errors.email)}
          helperText={touched.email && errors.email}
@@ -50,7 +50,7 @@ const LoginForm = ({ values,errors,touched,handleChange,handleBlur}) => {
          name="password"
          type="password"
          onBlur={handleBlur}
-         value={values.password}
+         value={values.password || ""}
          onChange={handleChange}
          error={touched.password && Boolean(errors.password)}
          helperText={touched.password && errors.password}

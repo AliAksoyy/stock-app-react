@@ -70,7 +70,7 @@ export default function Login() {
               initialValues={{email:"", password:""}}
               validationSchema={loginSchema}
               onSubmit={(values,actions)=> {
-                
+                console.log(values)
                 actions.resetForm()
                 actions.setSubmitting(false)
               }}
