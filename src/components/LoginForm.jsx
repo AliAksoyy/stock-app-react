@@ -5,6 +5,7 @@ import { Form } from 'formik'
 import React from 'react'
 import { flexColumn } from '../styles/globalStyle'
 import * as yup from 'yup';
+import { useSelector } from "react-redux"
 
 
 export const loginSchema = yup.object().shape({
@@ -25,7 +26,8 @@ export const loginSchema = yup.object().shape({
 
 const LoginForm = ({ values,errors,touched,handleChange,handleBlur}) => {
 
-    const loading=false
+  const {loading}=useSelector(state=>state.auth)
+    
 
   return (
     <Form>

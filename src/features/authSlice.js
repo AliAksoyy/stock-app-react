@@ -24,14 +24,19 @@ export const authSlice=createSlice({
             state.currentUser=null
             state.loading=false
             state.error=false
+            state.token=null
         },
         registerSuccess:(state,action)=> {
             state.currentUser=action.payload?.username
             state.token=action.payload?.token
             state.loading=false
+            state.error=false
+
         },
         fetchFail:(state)=> {
             state.error=true
+            state.loading=false
+
         },
     },
 })

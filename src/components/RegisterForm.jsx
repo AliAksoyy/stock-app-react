@@ -5,6 +5,7 @@ import TextField  from '@mui/material/TextField'
 import { LoadingButton } from '@mui/lab'
 import { Box } from '@mui/material'
 import { flexColumn } from '../styles/globalStyle'
+import { useSelector } from 'react-redux'
 
 export const registerSchema = Yup.object().shape({
 
@@ -31,7 +32,8 @@ export const registerSchema = Yup.object().shape({
 
 const RegisterForm = ({values,errors,handleBlur,handleChange,touched}) => {
 
-    const loading=false
+  const {loading}=useSelector(state=>state.auth)
+    
    
   return (
     <Form>

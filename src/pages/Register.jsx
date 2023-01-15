@@ -12,6 +12,7 @@ import { Formik } from 'formik';
 import RegisterForm, { registerSchema } from '../components/RegisterForm';
 import useAuthCalls from '../hooks/useAuthCalls';
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -30,7 +31,7 @@ const theme = createTheme();
 export default function Register() {
   
   const {register}=useAuthCalls()
-
+  
 
   return (
     <ThemeProvider theme={theme}>
