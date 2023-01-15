@@ -14,6 +14,11 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { useNavigate } from 'react-router-dom';
 
 
+
+
+
+
+
 const menu= [
     {
         icon: <DashboardIcon />,
@@ -54,20 +59,26 @@ const menu= [
 
 
 const MenuListItem = () => {
+
+  const iconStyle={
+    
+    "&:hover":{color:"white"},
+    "&:hover .MuiSvgIcon-root":{color:"white"},
+  }
     const navigate=useNavigate()
   return (
     <List>
         {menu.map((text, index) => (
           <ListItem key={index} disablePadding>
           {!text.navigate.includes("http") ? (
-            <ListItemButton onClick={()=> navigate(`${text.navigate}`)}>
+            <ListItemButton onClick={()=> navigate(`${text.navigate}`)} sx={iconStyle}>
               <ListItemIcon>
                {text.icon}
               </ListItemIcon>
               <ListItemText primary={text.title} />
             </ListItemButton>
           ):(
-            <ListItemButton to={`${text.navigate}`} >
+            <ListItemButton to={`${text.navigate}`} sx={iconStyle} >
               <ListItemIcon>
                {text.icon}
               </ListItemIcon>

@@ -13,14 +13,14 @@ import useAuthCalls from '../hooks/useAuthCalls';
 import MenuListItem from '../components/MenuListItem';
 import { Outlet } from 'react-router-dom';
 import { blueGrey } from '@mui/material/colors';
-
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+const navigate=useNavigate()
   const {logout}=useAuthCalls()
   const {currentUser}=useSelector(state=>state.auth)
 
@@ -60,11 +60,11 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography sx={{flexGrow:1}} variant="h6" noWrap component="div">
+          <Typography sx={{flexGrow:1,cursor:"pointer" }} onClick={()=> navigate("/stock")} variant="h6" noWrap component="div">
             Stock App
           </Typography>
           {currentUser && (
-          <Typography onClick={()=>logout()} sx={{cursor:"pointer"}} variant="h6" noWrap component="div">
+          <Typography onClick={()=>logout()} sx={{cursor:"pointer", "&:hover":{color:"white"}}} variant="h6" noWrap component="div">
             Logout
           </Typography>
           )}
