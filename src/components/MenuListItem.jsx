@@ -11,38 +11,39 @@ import StoreIcon from "@mui/icons-material/Store";
 import StarsIcon from "@mui/icons-material/Stars";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import { useNavigate } from 'react-router-dom';
 
 
 const menu= [
     {
         icon: <DashboardIcon />,
         title:"Dashboard",
-        navigate:"stock"
+        navigate:""
     },
     {
         icon: <AttachMoneyIcon />,
         title:"Purchase",
-        navigate:"purchases"
+        navigate:"purchases/"
     },
     {
         icon: <InventoryIcon />,
         title:"Sales",
-        navigate:"sales"
+        navigate:"sales/"
     },
     {
         icon: <StoreIcon />,
         title:"Firms",
-        navigate:"firms"
+        navigate:"firms/"
     },
     {
         icon: <StarsIcon />,
         title:"Brands",
-        navigate:"brands"
+        navigate:"brands/"
     },
     {
         icon: <ShoppingCartIcon />,
         title:"Products",
-        navigate:"products"
+        navigate:"products/"
     },
     {
         icon: <SupervisorAccountIcon />,
@@ -53,16 +54,26 @@ const menu= [
 
 
 const MenuListItem = () => {
+    const navigate=useNavigate()
   return (
     <List>
         {menu.map((text, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+          {!text.navigate.includes("http") ? (
+            <ListItemButton onClick={()=> navigate(`${text.navigate}`)}>
               <ListItemIcon>
                {text.icon}
               </ListItemIcon>
               <ListItemText primary={text.title} />
             </ListItemButton>
+          ):(
+            <ListItemButton to={`${text.navigate}`} >
+              <ListItemIcon>
+               {text.icon}
+              </ListItemIcon>
+              <ListItemText primary={text.title} />
+            </ListItemButton>
+          )}
           </ListItem>
         ))}
       </List>
