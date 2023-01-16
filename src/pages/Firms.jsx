@@ -38,7 +38,7 @@ const Firms = () => {
         {firms?.map((firm)=> {
           return(
             <Grid key={firm.id} item>
-              <FirmCards firm={firm} />
+              <FirmCards firm={firm} setOpen={setOpen} setInfo={setInfo} />
            </Grid>
           )
         })}

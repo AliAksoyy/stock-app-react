@@ -9,7 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { grey } from '@mui/material/colors';
 import { flex } from '../../styles/globalStyle';
 
-export default function FirmCards({firm}) {
+export default function FirmCards({firm,setOpen,setInfo}) {
     console.log(firm)
   return (
     <Card  elevation={10} sx={{ p:2, height:400,width:300, display:"flex", flexDirection:"column", justifyContent:"center"  }}>
@@ -30,7 +30,7 @@ export default function FirmCards({firm}) {
          Phone: {firm.phone}
         </Typography>
       <CardActions sx={flex} >
-        <EditIcon sx={{color:grey[400], "&:hover":{color:grey[700]},cursor:"pointer"}} />
+        <EditIcon onClick={()=>{setOpen(true); setInfo(firm)}} sx={{color:grey[400], "&:hover":{color:grey[700]},cursor:"pointer"}} />
         <DeleteIcon sx={{color:grey[400], "&:hover":{color:grey[700],cursor:"pointer"}}}/>
       </CardActions>
     </Card>
