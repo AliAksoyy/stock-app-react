@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { useSelector } from 'react-redux';
 import useAuthCalls from '../hooks/useAuthCalls';
 import MenuListItem from '../components/MenuListItem';
@@ -108,14 +109,14 @@ const navigate=useNavigate()
           {drawer}
         </Drawer>
       </Box>
-      <Box
+      <Container
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
        
       <Outlet />
-      </Box>
+      </Container>
     </Box>
   );
 }
