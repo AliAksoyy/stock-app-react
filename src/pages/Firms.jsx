@@ -22,6 +22,7 @@ const Firms = () => {
   const {getFirms}=useStockCalls()
   const [open,setOpen]=useState(false)
   const [info,setInfo]=useState({})
+  
   useEffect(()=> {
     getFirms()
   },[])

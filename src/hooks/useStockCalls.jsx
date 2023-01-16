@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFail, fetchStart, getSuccess } from '../features/stockSlice'
+import useAxios from './useAxios'
 
 
 
@@ -10,18 +11,15 @@ import { fetchFail, fetchStart, getSuccess } from '../features/stockSlice'
 
 const useStockCalls = () => {
 
-    const {token}=useSelector(state=>state.auth)
-    const BASE_URL="https://14281.fullstack.clarusway.com/"
+    
     const dispatch=useDispatch()
-
+    const {axiosWithToken}=useAxios()
 
 
         const getStockData=async(url)=> {
             dispatch(fetchStart())
             try {
-            const {data}= await axios(`${BASE_URL}stock/${url}/`,{headers:{
-                Authorization: `Token ${token}`
-            }})
+            const {data}= await axiosWithToken(`stock/${url}/`)
             dispatch(getSuccess({data,url}))
             } catch (error) {
             console.log(error)
