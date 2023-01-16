@@ -9,9 +9,9 @@ import useStockCalls from '../../hooks/useStockCalls';
 
 
 
-const FirmsModal = ({info,setInfo,open,setOpen}) => {
+const BrandsModal = ({info,setInfo,open,setOpen}) => {
 
-    const {postFirms,putFirms}=useStockCalls()
+    const {postBrands,putBrands}=useStockCalls()
 
 
     const handleChange=(e)=>{
@@ -22,9 +22,9 @@ const FirmsModal = ({info,setInfo,open,setOpen}) => {
         e.preventDefault()
         console.log(info)
         if(info.id){
-            putFirms(info)
+            putBrands(info)
         }else {
-            postFirms(info) 
+            postBrands(info) 
         } 
         setInfo({})
         setOpen(false)
@@ -40,27 +40,11 @@ const FirmsModal = ({info,setInfo,open,setOpen}) => {
         <Box sx={modalStyle}>
             <Box sx={flexColumn} component="form" onSubmit={handleSubmit}>
                 <TextField
-                label="Firm Name*"
+                label="Brand Name*"
                 id="name"
                 name="name"
                 variant="outlined"
                 value={info?.name || ""}
-                onChange={handleChange}
-                />
-                <TextField
-                label="Phone*"
-                id="phone"
-                name="phone"
-                variant="outlined"
-                value={info?.phone || ""}
-                onChange={handleChange}
-                />
-                <TextField
-                label="Address"
-                id="address"
-                name="address"
-                variant="outlined"
-                value={info?.address || ""}
                 onChange={handleChange}
                 />
                 <TextField
@@ -71,7 +55,7 @@ const FirmsModal = ({info,setInfo,open,setOpen}) => {
                 value={info?.image || ""}
                 onChange={handleChange}
                 />
-                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>SAVE FİRM</Button>
+                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>SAVE BRAND</Button>
             </Box>
         </Box>
       </Modal>
@@ -79,4 +63,4 @@ const FirmsModal = ({info,setInfo,open,setOpen}) => {
   )
 }
 
-export default FirmsModal
+export default BrandsModal
