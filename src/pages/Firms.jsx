@@ -1,8 +1,10 @@
 import  Typography  from '@mui/material/Typography'
 import  Box  from '@mui/material/Box'
 import  Button  from '@mui/material/Button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { grey } from '@mui/material/colors'
+import useStockCalls from '../hooks/useStockCalls'
+
 
 
 
@@ -11,8 +13,12 @@ import { grey } from '@mui/material/colors'
 
 const Firms = () => {
 
-  
+  const {getFirms}=useStockCalls()
 
+  useEffect(()=> {
+    getFirms()
+
+  },[])
 
 
   return (
