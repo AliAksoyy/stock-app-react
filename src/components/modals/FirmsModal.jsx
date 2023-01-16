@@ -5,10 +5,14 @@ import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 import { flexColumn, modalStyle } from '../../styles/globalStyle';
 import { grey } from '@mui/material/colors';
+import useStockCalls from '../../hooks/useStockCalls';
 
 
 
 const FirmsModal = ({info,setInfo,open,setOpen}) => {
+
+    const {postFirms,putFirms}=useStockCalls()
+
 
     const handleChange=(e)=>{
         const {name,value}=e.target
@@ -17,6 +21,11 @@ const FirmsModal = ({info,setInfo,open,setOpen}) => {
     const handleSubmit=(e)=> {
         e.preventDefault()
         console.log(info)
+        if(info.id){
+            putFirms(info)
+        }else {
+            postFirms(info) 
+        } 
         setInfo({})
         setOpen(false)
     }

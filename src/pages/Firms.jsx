@@ -22,7 +22,7 @@ const Firms = () => {
   const {getFirms}=useStockCalls()
   const [open,setOpen]=useState(false)
   const [info,setInfo]=useState({})
-  
+
   useEffect(()=> {
     getFirms()
   },[])
@@ -36,13 +36,11 @@ const Firms = () => {
       <Button onClick={()=>setOpen(true)}  sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} variant="contained">New Firms</Button>
       <FirmsModal open={open} setOpen={setOpen} info={info} setInfo={setInfo}/>
       <Grid container justifyContent="center" alignItems="center" spacing={3}  mt={3} >
-        {firms?.map((firm)=> {
-          return(
-            <Grid key={firm.id} item>
+        {firms?.map((firm)=> (
+            <Grid key={firm?.id} item>
               <FirmCards firm={firm} setOpen={setOpen} setInfo={setInfo} />
            </Grid>
-          )
-        })}
+        ))}
        
       </Grid>
     </Box>
