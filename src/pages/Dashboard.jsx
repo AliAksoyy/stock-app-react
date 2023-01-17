@@ -25,7 +25,7 @@ const navigate=useNavigate()
   const {logout}=useAuthCalls()
   const {currentUser}=useSelector(state=>state.auth)
 
-  console.log(currentUser)
+ 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };

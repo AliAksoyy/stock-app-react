@@ -12,7 +12,7 @@ import useStockCalls from '../../hooks/useStockCalls';
 
 export default function BrandCards({brand,setOpen,setInfo}) {
 
-    console.log(brand)
+    
     const {deleteBrands}=useStockCalls()
     
   return (

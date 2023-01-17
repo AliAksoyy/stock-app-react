@@ -1,3 +1,5 @@
+import { grey } from "@mui/material/colors"
+
 export const flexColumn={
     display:"flex",
     flexDirection:"column",
@@ -22,4 +24,18 @@ export const modalStyle={
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+}
+
+export const selectStyle= {
+    display:"flex",
+    justifyContent:"center",
+    flexDirection: {xs:"column", sm:"row"},
+    gap:2,
+    marginTop:3,
+    marginBottom:3
+}
+
+export const deleteHover={
+    cursor:"pointer",
+    "&:hover":{color:grey[500]}
 }

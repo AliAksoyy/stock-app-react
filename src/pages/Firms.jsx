@@ -18,7 +18,7 @@ import FirmsModal from '../components/modals/FirmsModal'
 const Firms = () => {
 
   const {firms}=useSelector(state=>state.stock)
-  console.log(firms)
+
   const {getFirms}=useStockCalls()
   const [open,setOpen]=useState(false)
   const [info,setInfo]=useState({})

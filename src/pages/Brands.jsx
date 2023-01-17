@@ -18,7 +18,7 @@ import BrandsModal from '../components/modals/BrandsModal'
 const Brands = () => {
 
   const {brands}=useSelector(state=>state.stock)
-  console.log(brands)
+ 
   const {getBrands}=useStockCalls()
   const [open,setOpen]=useState(false)
   const [info,setInfo]=useState({})

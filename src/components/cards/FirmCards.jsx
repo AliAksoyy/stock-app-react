@@ -12,7 +12,7 @@ import useStockCalls from '../../hooks/useStockCalls';
 
 export default function FirmCards({firm,setOpen,setInfo}) {
 
-    console.log(firm)
+   
     const {deleteFirms}=useStockCalls()
     
   return (
