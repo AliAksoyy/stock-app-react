@@ -23,6 +23,9 @@ const useStockCalls = () => {
         }
         const getFirms=()=>getStockData("firms")
         const getBrands=()=>getStockData("brands")
+        const getProducts=()=>getStockData("products")
+        const getCategories=()=>getStockData("categories")
+        
 
 
         // TODO Post Data
@@ -68,7 +71,7 @@ const useStockCalls = () => {
        
 
 
-  return {getFirms,postFirms,deleteFirms,putFirms,getBrands,postBrands,deleteBrands,putBrands}
+  return {getFirms,getProducts,getCategories,getBrands,postFirms,postBrands,putFirms,putBrands,deleteBrands,deleteFirms}
 }
 
 export default useStockCalls
