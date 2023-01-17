@@ -39,3 +39,12 @@ export const deleteHover={
     cursor:"pointer",
     "&:hover":{color:grey[500]}
 }
+
+export const upGrade={
+    display:"flex",
+    justifyContent:"center",
+    gap:"1",
+    "&:hover":{color:grey[500]},
+    cursor:"pointer"
+
+}

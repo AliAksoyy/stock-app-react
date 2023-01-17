@@ -6,7 +6,7 @@ import { grey } from '@mui/material/colors'
 import {MultiSelectBox,MultiSelectBoxItem} from '@tremor/react';
 import useStockCalls from '../hooks/useStockCalls'
 import { useSelector } from 'react-redux'
-import { deleteHover, selectStyle } from '../styles/globalStyle'
+import { deleteHover, selectStyle, upGrade } from '../styles/globalStyle'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,6 +15,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
+import UpgradeIcon from "@mui/icons-material/Upgrade";
+import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 
 
 const Products = () => {
@@ -23,10 +25,13 @@ const {getProducts,getBrands,getCategories}=useStockCalls()
 const {brands,products}=useSelector(state=>state.stock)
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
+const [toggle,setToogle]=useState({brand:false,name:false,stock:false})
+const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
 console.log(selectedBrands)
 console.log(selectedProducts)
 console.log(brands)
 console.log(products)
+console.log(toggle)
 
 useEffect(() => {
   getProducts()
@@ -39,7 +44,7 @@ useEffect(() => {
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Products</Typography>
       <Button variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
-      <Box sx={selectStyle}>
+       <Box sx={selectStyle}>
        <MultiSelectBox
       handleSelect={ (value) => setSelectedBrands(value) }
       placeholder="Select Brands">
@@ -54,7 +59,7 @@ useEffect(() => {
          <MultiSelectBoxItem key={ product?.name } value={ product?.name } text={ product?.name } />
       )) }
       </MultiSelectBox>   
-      </Box>
+      </Box>  
       <Box>
           <TableContainer component={Paper} elevation={10}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -62,14 +67,32 @@ useEffect(() => {
               <TableRow>
                 <TableCell align="center">#</TableCell>
                 <TableCell align="center">Category</TableCell>
-                <TableCell align="center">Brand</TableCell>
-                <TableCell align="center">Name</TableCell>
-                <TableCell align="center">Stock</TableCell>
+                <TableCell align="center">
+                <Box sx={upGrade} onClick={()=> setToogle({...toggle, brand:!toggle.brand})}>
+                {toggle.brand && <UpgradeIcon />}
+                {!toggle.brand && <VerticalAlignBottomIcon />}
+                Brand
+                </Box>
+                </TableCell>
+                <TableCell align="center">
+                <Box sx={upGrade} onClick={()=> setToogle({...toggle, name:!toggle.name})}>
+                {toggle.name && <UpgradeIcon />}
+                {!toggle.name && <VerticalAlignBottomIcon />}
+                Name
+                </Box>
+                </TableCell>
+                <TableCell align="center">
+                <Box sx={upGrade} onClick={()=> setToogle({...toggle, stock:!toggle.stock})}>
+                {toggle.stock && <UpgradeIcon />}
+                {!toggle.stock && <VerticalAlignBottomIcon />}
+                Stock
+                </Box>
+                </TableCell>
                 <TableCell align="center">Operation</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {products?.map((product,i) => (
+              {products?.filter((item)=>isSelectedBrands(item)).map((product,i) => (
                 <TableRow
                   key={product.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
