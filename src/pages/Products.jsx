@@ -18,15 +18,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 import useSortedData from '../hooks/useSortedData'
+import ProductsModal from '../components/modals/ProductsModal'
 
 
 const Products = () => {
 
-const {getProducts,getBrands,getCategories}=useStockCalls()
+const {getProducts,getBrands,getCategories,deleteProducts}=useStockCalls()
 const {brands,products}=useSelector(state=>state.stock)
 
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
+const [open,setOpen]=useState(false)
+const [info,setInfo]=useState({})
+
 const columnObj={
   brand:1,
   name:1,
@@ -58,7 +62,8 @@ console.log(selectedProducts)
   return (
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Products</Typography>
-      <Button variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
+      <Button onClick={()=> setOpen(true)} variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
+      <ProductsModal open={open} setOpen={setOpen} info={info} setInfo={setInfo}/>
        <Box sx={selectStyle}>
        <MultiSelectBox
                     handleSelect={ (item) => setSelectedBrands(item) }
@@ -122,7 +127,7 @@ console.log(selectedProducts)
                   <TableCell align="center">{product.brand}</TableCell>
                   <TableCell align="center">{product.name}</TableCell>
                   <TableCell align="center">{product.stock}</TableCell>
-                  <TableCell align="center"><DeleteIcon sx={deleteHover} /></TableCell>
+                  <TableCell align="center" onClick={()=>deleteProducts(products)}><DeleteIcon sx={deleteHover} /></TableCell>
                 </TableRow>
               ))}
             </TableBody>
