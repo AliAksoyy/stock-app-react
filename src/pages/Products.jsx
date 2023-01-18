@@ -23,18 +23,12 @@ const Products = () => {
 
 const {getProducts,getBrands,getCategories}=useStockCalls()
 const {brands,products}=useSelector(state=>state.stock)
+
+
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
-const [toggle,setToogle]=useState({brand:false,name:false,stock:false})
-const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
-const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
-const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
-console.log(filteredProducts)
-console.log(selectedBrands)
-console.log(selectedProducts)
-console.log(brands)
-console.log(products)
-console.log(toggle)
+const [toggle,setToogle]=useState({brand:1,name:1,stock:1})
+const [sortedProducts,setSortedProducts]=useState(products)
 
 useEffect(() => {
   getProducts()
@@ -42,6 +36,36 @@ useEffect(() => {
   getBrands()
 }, [])
 
+useEffect(() => {
+    setSortedProducts(products)
+}, [products])
+
+const handleSort=(arg,type)=> {
+      setToogle({...toggle, [arg]: toggle[arg] * (-1)});
+      setSortedProducts(
+        [...sortedProducts]?.sort((a,b)=> {
+          if(type==="number"){
+          return (a[arg] - b[arg]) * toggle[arg]
+          }else {
+            if(toggle[arg]===1){
+              return b[arg] > a[arg]  ? 1 : b[arg] < a[arg] ? -1 : 0
+            }else {
+             return a[arg] > b[arg]  ? 1 : a[arg] < b[arg] ? -1 : 0
+            }
+          }
+        })
+      
+      )
+}
+
+const isSelectedBrands=(item)=>console.log(item)
+const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
+const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
+
+console.log(toggle)
+console.log(sortedProducts)
+console.log(selectedBrands)
+console.log(selectedProducts)
 
   return (
     <Box>
@@ -49,23 +73,24 @@ useEffect(() => {
       <Button variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
        <Box sx={selectStyle}>
        <MultiSelectBox
-                    handleSelect={ (item) => setSelectedBrands(item) }
+                    onValuesChange={ (item) => setSelectedBrands(item) }
                     placeholder="Select Brands"
                 >
-                    { brands ? brands.map((item) => (
+                    {brands?.map((item) => (
                         <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
-                    )) : [] }
+                    ))}
                 </MultiSelectBox>
-                 <MultiSelectBox
-                    handleSelect={ (item) => setSelectedProducts(item) }
+                 {/* <MultiSelectBox
+                    onValuesChange={ (item) => setSelectedProducts(item) }
                     placeholder="Select Products"
                 >
                     { filteredProducts ? filteredProducts.map((item) => (
                         <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
                     )) : [] }
-                </MultiSelectBox>  
+                </MultiSelectBox>   */}
       </Box>  
       <Box>
+      {sortedProducts?.length > 0 && (
           <TableContainer component={Paper} elevation={10}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -73,23 +98,23 @@ useEffect(() => {
                 <TableCell align="center">#</TableCell>
                 <TableCell align="center">Category</TableCell>
                 <TableCell align="center">
-                <Box sx={upGrade} onClick={()=> setToogle({...toggle, brand:!toggle.brand})}>
-                {toggle.brand && <UpgradeIcon />}
-                {!toggle.brand && <VerticalAlignBottomIcon />}
+                <Box sx={upGrade} onClick={()=>handleSort("brand","text")}>
+                {toggle.brand ===1 && <UpgradeIcon />}
+                {toggle.brand !==1 && <VerticalAlignBottomIcon />}
                 Brand
                 </Box>
                 </TableCell>
                 <TableCell align="center">
-                <Box sx={upGrade} onClick={()=> setToogle({...toggle, name:!toggle.name})}>
-                {toggle.name && <UpgradeIcon />}
-                {!toggle.name && <VerticalAlignBottomIcon />}
+                <Box sx={upGrade} onClick={()=>handleSort("name","text") }>
+                {toggle.name ===1 && <UpgradeIcon />}
+                {toggle.name !==1 && <VerticalAlignBottomIcon />}
                 Name
                 </Box>
                 </TableCell>
                 <TableCell align="center">
-                <Box sx={upGrade} onClick={()=> setToogle({...toggle, stock:!toggle.stock})}>
-                {toggle.stock && <UpgradeIcon />}
-                {!toggle.stock && <VerticalAlignBottomIcon />}
+                <Box sx={upGrade} onClick={()=> handleSort("stock","number")}>
+                {toggle.stock ===1 && <UpgradeIcon />}
+                {toggle.stock !==1 && <VerticalAlignBottomIcon />}
                 Stock
                 </Box>
                 </TableCell>
@@ -97,7 +122,7 @@ useEffect(() => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {products?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((product,i) => (
+              {sortedProducts?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((product,i) => (
                 <TableRow
                   key={product.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -115,6 +140,7 @@ useEffect(() => {
             </TableBody>
           </Table>
         </TableContainer>
+      )}
       </Box>
     </Box>
   )
