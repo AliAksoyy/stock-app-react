@@ -17,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
+import useSortedData from '../hooks/useSortedData'
 
 
 const Products = () => {
@@ -24,11 +25,15 @@ const Products = () => {
 const {getProducts,getBrands,getCategories}=useStockCalls()
 const {brands,products}=useSelector(state=>state.stock)
 
-
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
-const [toggle,setToogle]=useState({brand:1,name:1,stock:1})
-const [sortedProducts,setSortedProducts]=useState(products)
+const columnObj={
+  brand:1,
+  name:1,
+  stock:1,
+}
+const {handleSort,sortedData,toggle}=useSortedData(products,columnObj)
+
 
 useEffect(() => {
   getProducts()
@@ -36,34 +41,17 @@ useEffect(() => {
   getBrands()
 }, [])
 
-useEffect(() => {
-    setSortedProducts(products)
-}, [products])
 
-const handleSort=(arg,type)=> {
-      setToogle({...toggle, [arg]: toggle[arg] * (-1)});
-      setSortedProducts(
-        [...sortedProducts]?.sort((a,b)=> {
-          if(type==="number"){
-          return (a[arg] - b[arg]) * toggle[arg]
-          }else {
-            if(toggle[arg]===1){
-              return b[arg] > a[arg]  ? 1 : b[arg] < a[arg] ? -1 : 0
-            }else {
-             return a[arg] > b[arg]  ? 1 : a[arg] < b[arg] ? -1 : 0
-            }
-          }
-        })
-      
-      )
-}
 
-const isSelectedBrands=(item)=>console.log(item)
+const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
 const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
 const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
 
+
+
+
 console.log(toggle)
-console.log(sortedProducts)
+console.log(sortedData)
 console.log(selectedBrands)
 console.log(selectedProducts)
 
@@ -73,24 +61,24 @@ console.log(selectedProducts)
       <Button variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
        <Box sx={selectStyle}>
        <MultiSelectBox
-                    onValuesChange={ (item) => setSelectedBrands(item) }
+                    handleSelect={ (item) => setSelectedBrands(item) }
                     placeholder="Select Brands"
                 >
-                    {brands?.map((item) => (
+                    {brands ? brands.map((item) => (
                         <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
-                    ))}
+                    )) : []}
                 </MultiSelectBox>
-                 {/* <MultiSelectBox
-                    onValuesChange={ (item) => setSelectedProducts(item) }
+                  <MultiSelectBox
+                    handleSelect={ (item) => setSelectedProducts(item) }
                     placeholder="Select Products"
                 >
                     { filteredProducts ? filteredProducts.map((item) => (
                         <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
                     )) : [] }
-                </MultiSelectBox>   */}
+                </MultiSelectBox>   
       </Box>  
       <Box>
-      {sortedProducts?.length > 0 && (
+      {sortedData?.length > 0 && (
           <TableContainer component={Paper} elevation={10}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -122,7 +110,7 @@ console.log(selectedProducts)
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedProducts?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((product,i) => (
+              {sortedData?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((product,i) => (
                 <TableRow
                   key={product.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
