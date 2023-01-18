@@ -51,14 +51,6 @@ const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBr
 const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
 const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
 
-
-
-
-console.log(toggle)
-console.log(sortedData)
-console.log(selectedBrands)
-console.log(selectedProducts)
-
   return (
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Products</Typography>
@@ -127,7 +119,7 @@ console.log(selectedProducts)
                   <TableCell align="center">{product.brand}</TableCell>
                   <TableCell align="center">{product.name}</TableCell>
                   <TableCell align="center">{product.stock}</TableCell>
-                  <TableCell align="center" onClick={()=>deleteProducts(products)}><DeleteIcon sx={deleteHover} /></TableCell>
+                  <TableCell align="center" onClick={()=>deleteProducts(product)}><DeleteIcon sx={deleteHover} /></TableCell>
                 </TableRow>
               ))}
             </TableBody>

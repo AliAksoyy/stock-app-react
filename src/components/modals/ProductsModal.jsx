@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 
 const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
-    const {postProducts,putProducts}=useStockCalls()
+    const {postProducts}=useStockCalls()
   const {categories,brands}=useSelector(state=>state.stock)
   console.log(categories)
     const handleChange=(e)=>{
@@ -25,12 +25,7 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
     }
     const handleSubmit=(e)=> {
         e.preventDefault()
-        console.log(info)
-        if(info.id){
-            putProducts(info)
-        }else {
-            postProducts(info) 
-        } 
+        postProducts(info) 
         setInfo({})
         setOpen(false)
     }

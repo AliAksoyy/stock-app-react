@@ -55,7 +55,7 @@ const useStockCalls = () => {
         }
         const putFirms=(info)=>putStockData(info,"firms")
         const putBrands=(info)=>putStockData(info,"brands")
-        const putProducts=(info)=>putStockData(info,"products")
+        
 
         // TODO Delete Data
         const deleteStockData=async(info,url)=> {
@@ -74,7 +74,7 @@ const useStockCalls = () => {
        
 
 
-  return {getFirms,getProducts,getCategories,getBrands,postFirms,postBrands,postProducts,putFirms,putBrands,putProducts,deleteBrands,deleteFirms,deleteProducts}
+  return {getFirms,getProducts,getCategories,getBrands,postFirms,postBrands,postProducts,putFirms,putBrands,deleteBrands,deleteFirms,deleteProducts}
 }
 
 export default useStockCalls
