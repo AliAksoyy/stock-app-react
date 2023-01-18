@@ -27,6 +27,9 @@ const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
 const [toggle,setToogle]=useState({brand:false,name:false,stock:false})
 const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
+const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
+const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
+console.log(filteredProducts)
 console.log(selectedBrands)
 console.log(selectedProducts)
 console.log(brands)
@@ -46,19 +49,21 @@ useEffect(() => {
       <Button variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW PRODUCT</Button>
        <Box sx={selectStyle}>
        <MultiSelectBox
-      handleSelect={ (value) => setSelectedBrands(value) }
-      placeholder="Select Brands">
-      { brands?.map((brand) => (
-        <MultiSelectBoxItem key={ brand?.id } value={ brand?.name } text={ brand?.name } />
-      )) }
-      </MultiSelectBox>
-       <MultiSelectBox
-      handleSelect={ (value) => setSelectedProducts(value) }
-      placeholder="Select Products">
-      { products?.map((product) => (
-         <MultiSelectBoxItem key={ product?.name } value={ product?.name } text={ product?.name } />
-      )) }
-      </MultiSelectBox>   
+                    handleSelect={ (item) => setSelectedBrands(item) }
+                    placeholder="Select Brands"
+                >
+                    { brands ? brands.map((item) => (
+                        <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
+                    )) : [] }
+                </MultiSelectBox>
+                 <MultiSelectBox
+                    handleSelect={ (item) => setSelectedProducts(item) }
+                    placeholder="Select Products"
+                >
+                    { filteredProducts ? filteredProducts.map((item) => (
+                        <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
+                    )) : [] }
+                </MultiSelectBox>  
       </Box>  
       <Box>
           <TableContainer component={Paper} elevation={10}>
@@ -92,7 +97,7 @@ useEffect(() => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {products?.filter((item)=>isSelectedBrands(item)).map((product,i) => (
+              {products?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((product,i) => (
                 <TableRow
                   key={product.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
