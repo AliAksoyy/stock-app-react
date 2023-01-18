@@ -45,6 +45,7 @@ export const upGrade={
     justifyContent:"center",
     gap:"1",
     "&:hover":{color:grey[500]},
-    cursor:"pointer"
+    cursor:"pointer",
+    alignItems:"center",
 
 }

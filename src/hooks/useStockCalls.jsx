@@ -25,6 +25,7 @@ const useStockCalls = () => {
         const getBrands=()=>getStockData("brands")
         const getProducts=()=>getStockData("products")
         const getCategories=()=>getStockData("categories")
+        const getPurchases=()=>getStockData("purchases")
         
 
 
@@ -41,6 +42,7 @@ const useStockCalls = () => {
         const postFirms=(info)=>postStockData(info,"firms")
         const postBrands=(info)=>postStockData(info,"brands")
         const postProducts=(info)=>postStockData(info,"products")
+        const postPurchases=(info)=>postStockData(info,"purchases")
 
         // TODO Put Data
         const putStockData=async(info,url)=> {
@@ -55,6 +57,7 @@ const useStockCalls = () => {
         }
         const putFirms=(info)=>putStockData(info,"firms")
         const putBrands=(info)=>putStockData(info,"brands")
+        const putPurchases=(info)=>putStockData(info,"purchases")
         
 
         // TODO Delete Data
@@ -71,10 +74,11 @@ const useStockCalls = () => {
         const deleteFirms=(info)=>deleteStockData(info,"firms")
         const deleteBrands=(info)=>deleteStockData(info,"brands")
         const deleteProducts=(info)=>deleteStockData(info,"products")
+        const deletePurchases=(info)=>deleteStockData(info,"purchases")
        
 
 
-  return {getFirms,getProducts,getCategories,getBrands,postFirms,postBrands,postProducts,putFirms,putBrands,deleteBrands,deleteFirms,deleteProducts}
+  return {getFirms,getProducts,getCategories,getBrands,getPurchases,postFirms,postBrands,postProducts,postPurchases,putFirms,putBrands,putPurchases,deleteBrands,deleteFirms,deleteProducts,deletePurchases}
 }
 
 export default useStockCalls
