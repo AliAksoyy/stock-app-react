@@ -6,7 +6,7 @@ import { grey } from '@mui/material/colors'
 import {MultiSelectBox,MultiSelectBoxItem} from '@tremor/react';
 import useStockCalls from '../hooks/useStockCalls'
 import { useSelector } from 'react-redux'
-import { deleteHover, selectStyle, upGrade } from '../styles/globalStyle'
+import { deleteHover, editHover, selectStyle, upGrade } from '../styles/globalStyle'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -19,11 +19,13 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 import useSortedData from '../hooks/useSortedData'
 import PurchasesModal from '../components/modals/PurchasesModal'
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 const Purchases = () => {
 
-const {getProducts,getBrands,getCategories,getPurchases,deletePurchases}=useStockCalls()
+const {getFirms,getProducts,getBrands,getCategories,getPurchases,deletePurchases}=useStockCalls()
 const {brands,products,purchases}=useSelector(state=>state.stock)
 console.log(purchases)
 
@@ -39,7 +41,7 @@ const columnObj={
   product:1,
   quantity:1,
   price:1,
-  price_totol:1
+  price_total:1
 }
 const {handleSort,sortedData,toggle}=useSortedData(purchases,columnObj)
 console.log(columnObj)
@@ -50,14 +52,15 @@ useEffect(() => {
   getCategories()
   getBrands()
   getPurchases()
+  getFirms()
 }, [])
 
 
 
 const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
-const filteredProducts=products?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
-const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selectedProducts.length===0
-
+const filteredProducts=purchases?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
+const isSelectedProducts=(item)=>selectedProducts.includes(item.product) || selectedProducts.length===0
+console.log(filteredProducts)
   return (
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Purchases</Typography>
@@ -77,7 +80,7 @@ const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selecte
                     placeholder="Select Products"
                 >
                     { filteredProducts ? filteredProducts.map((item) => (
-                        <MultiSelectBoxItem key={ item.name } value={ item.name } text={ item.name } />
+                        <MultiSelectBoxItem key={ item.product } value={ item.product } text={ item.product } />
                     )) : [] }
                 </MultiSelectBox>   
       </Box>  
@@ -91,7 +94,7 @@ const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selecte
                 <Box sx={upGrade} onClick={()=>handleSort("createds","text")}>
                 {toggle.createds ===1 && <UpgradeIcon />}
                 {toggle.createds !==1 && <VerticalAlignBottomIcon />}
-                Date
+                <Typography variant="body2">Date</Typography>
                 </Box>
                 </TableCell>
                 <TableCell align="center">Category</TableCell>
@@ -99,67 +102,80 @@ const isSelectedProducts=(item)=>selectedProducts.includes(item.name) || selecte
                 <Box sx={upGrade} onClick={()=>handleSort("firm","text")}>
                 {toggle.firm ===1 && <UpgradeIcon />}
                 {toggle.firm !==1 && <VerticalAlignBottomIcon />}
-                Firm Name
+                <Typography variant="body2">Firm Name</Typography>
                 </Box>
                 </TableCell>
                 <TableCell align="center">
                 <Box sx={upGrade} onClick={()=>handleSort("brand","text") }>
                 {toggle.brand ===1 && <UpgradeIcon />}
                 {toggle.brand !==1 && <VerticalAlignBottomIcon />}
-                Brand Name
+                <Typography variant="body2">Brand Name</Typography>
+                
                 </Box>
                 </TableCell>
                 <TableCell align="center">
                 <Box sx={upGrade} onClick={()=> handleSort("product","text")}>
                 {toggle.product ===1 && <UpgradeIcon />}
                 {toggle.product !==1 && <VerticalAlignBottomIcon />}
-                Product Name
+                <Typography variant="body2">Product Name</Typography>
+
                 </Box>
                 </TableCell>
                 <TableCell align="center">
                 <Box sx={upGrade} onClick={()=> handleSort("quantity","number")}>
                 {toggle.quantity ===1 && <UpgradeIcon />}
                 {toggle.quantity !==1 && <VerticalAlignBottomIcon />}
-                Quantity
+                <Typography variant="body2">Quantity</Typography>
+                
                 </Box>
                 </TableCell>
                 <TableCell align="center">
                 <Box sx={upGrade} onClick={()=> handleSort("price","number")}>
                 {toggle.price ===1 && <UpgradeIcon />}
                 {toggle.price !==1 && <VerticalAlignBottomIcon />}
-                Amount
+                <Typography variant="body2">Amount</Typography>
+                
                 </Box>
                 </TableCell>
                 <TableCell align="center">
                 <Box sx={upGrade} onClick={()=> handleSort("price_total","number")}>
                 {toggle["price_total"] ===1 && <UpgradeIcon />}
                 {toggle["price_total"] !==1 && <VerticalAlignBottomIcon />}
-                Total Amount
+                <Typography variant="body2">Total Amount</Typography>
+                
                 </Box>
                 </TableCell>
-                <TableCell align="center">Operation</TableCell>
+                <TableCell align="center">
+                <Typography variant="body2">Operation</Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedData?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((purchase,i) => (
+              {sortedData?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((purchase) => (
                 <TableRow
                   key={purchase.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell align="center" component="th" scope="row">
-                    {Number(purchase.createds)}
+                    {purchase.createds}
                   </TableCell>
-                   <TableCell align="center">{purchase.category}</TableCell>
+                    <TableCell align="center">{purchase.category[0].name}</TableCell>
                   <TableCell align="center">{purchase.firm}</TableCell>
                   <TableCell align="center">{purchase.brand}</TableCell>
                   <TableCell align="center">{purchase.product}</TableCell>
                   <TableCell align="center">{purchase.quantity}</TableCell>
-                  <TableCell align="center">{purchase.price}</TableCell>
-                  <TableCell align="center">{purchase["price_total"]}</TableCell>
-                  <TableCell align="center" onClick={()=>deletePurchases(purchase)}><DeleteIcon sx={deleteHover} /></TableCell> 
+                  <TableCell align="center">{Number(purchase.price)}</TableCell>
+                  <TableCell align="center">{Number(purchase["price_total"])}</TableCell>
+                  <TableCell align="center" >
+                  <Box>
+                  <EditIcon sx={editHover} onClick={()=>{setOpen(true); setInfo(purchase)}}/>
+                  <DeleteIcon sx={deleteHover} onClick={()=>deletePurchases(purchase)} />
+                  </Box>
+                 
+                  </TableCell>  
                 </TableRow>
               ))}
-            </TableBody>  */}
+            </TableBody>    
           </Table>
         </TableContainer>
       )}

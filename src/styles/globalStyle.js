@@ -35,6 +35,10 @@ export const selectStyle= {
     marginBottom:3
 }
 
+export const editHover={
+    cursor:"pointer",
+    "&:hover":{color:grey[500]}
+}
 export const deleteHover={
     cursor:"pointer",
     "&:hover":{color:grey[500]}

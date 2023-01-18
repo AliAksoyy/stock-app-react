@@ -16,16 +16,19 @@ import { useSelector } from 'react-redux';
 
 const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
-    const {postProducts}=useStockCalls()
-  const {categories,brands}=useSelector(state=>state.stock)
-
+    const {postPurchases,putPurchases}=useStockCalls()
+  const {products,brands,firms}=useSelector(state=>state.stock)
+console.log(firms)
     const handleChange=(e)=>{
         const {name,value}=e.target
         setInfo({...info, [name]:value} )
     }
     const handleSubmit=(e)=> {
         e.preventDefault()
-        postProducts(info) 
+        if(info.id){
+          putPurchases(info)
+        }
+        postPurchases(info) 
         setInfo({})
         setOpen(false)
     }
@@ -40,16 +43,16 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
         <Box sx={modalStyle}>
             <Box sx={flexColumn} component="form" onSubmit={handleSubmit}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+                <InputLabel id="demo-simple-select-label">Firm</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  id="category_id"
-                  name="category_id"
-                  value={info?.category_id || ""}
-                  label="Categories"
+                  id="firm_id"
+                  name="firm_id"
+                  value={info?.firm_id || ""}
+                  label="Firm"
                   onChange={handleChange}
                 >
-                {categories?.map((item)=>{
+                {firms?.map((item)=>{
                  
                   return (
                     <MenuItem  key={item.id} value={item.id}>{item.name}</MenuItem>
@@ -73,12 +76,36 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
                 })}  
                 </Select>
                 </FormControl>
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Product</InputLabel>
+                <Select
+                  id="product_id"
+                  name="product_id"
+                  value={info?.product_id || ""}
+                  label="Products"
+                  onChange={handleChange}
+                >
+                 {products?.map((item)=>{
+                  return (
+                    <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                  )
+                })}  
+                </Select>
+                </FormControl>
                 <TextField
-                label="Product Name"
-                id="name"
-                name="name"
+                label="Quantity"
+                id="quantity"
+                name="quantity"
                 variant="outlined"
-                value={info?.name || ""}
+                value={info?.quantity || ""}
+                onChange={handleChange}
+                />
+                <TextField
+                label="Price"
+                id="price"
+                name="price"
+                variant="outlined"
+                value={info?.price || ""}
                 onChange={handleChange}
                 />
                 <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>SAVE FİRM</Button>
