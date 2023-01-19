@@ -23,7 +23,7 @@ import ProductsModal from '../components/modals/ProductsModal'
 
 const Products = () => {
 
-const {getProducts,getBrands,getCategories,deleteProducts}=useStockCalls()
+const {deleteProducts,getProCatBrands}=useStockCalls()
 const {brands,products}=useSelector(state=>state.stock)
 
 const [selectedBrands,setSelectedBrands]=useState([])
@@ -40,9 +40,7 @@ const {handleSort,sortedData,toggle}=useSortedData(products,columnObj)
 
 
 useEffect(() => {
-  getProducts()
-  getCategories()
-  getBrands()
+  getProCatBrands()
 }, [])
 
 

@@ -25,7 +25,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const Sales = () => {
 
-const {getFirms,getProducts,getBrands,getCategories,getPurchases,getSales,deleteSales}=useStockCalls()
+const {getFirms,getProCatBrands,getPurchases,getSales,deleteSales}=useStockCalls()
 const {brands,sales}=useSelector(state=>state.stock)
 
 
@@ -46,9 +46,7 @@ const {handleSort,sortedData,toggle}=useSortedData(sales,columnObj)
 
 
 useEffect(() => {
-  getProducts()
-  getCategories()
-  getBrands()
+  getProCatBrands()
   getPurchases()
   getFirms()
   getSales()

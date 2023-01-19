@@ -1,5 +1,5 @@
 import { useDispatch} from 'react-redux'
-import { fetchFail, fetchStart, getSuccess } from '../features/stockSlice'
+import { fetchFail, fetchStart, getProCatBrandsSuccess, getSuccess } from '../features/stockSlice'
 import { toastifyError, toastifySuccess } from '../helpers/toastify'
 import useAxios from './useAxios'
 
@@ -29,6 +29,16 @@ const useStockCalls = () => {
         const getPurchases=()=>getStockData("purchases")
         const getSales=()=>getStockData("sales")
         
+        const getProCatBrands=async()=> {
+            dispatch(fetchStart())
+            try{
+                const [products,categories,brands] = await Promise.all([axiosWithToken(`stock/products/`),axiosWithToken(`stock/categories/`), axiosWithToken(`stock/brands/`)])
+                dispatch(getProCatBrandsSuccess([products.data,categories.data,brands.data]))
+            }catch(err){
+                console.log(err)
+                dispatch(fetchFail())
+            }
+        }
 
 
         // TODO Post Data
@@ -88,7 +98,7 @@ const useStockCalls = () => {
        
 
 
-  return {getFirms,getProducts,getCategories,getBrands,getPurchases,getSales,postFirms,postBrands,postProducts,postPurchases,postSales,putFirms,putBrands,putPurchases,putSales,deleteBrands,deleteFirms,deleteProducts,deletePurchases,deleteSales}
+  return {getFirms,getProducts,getCategories,getBrands,getPurchases,getSales,postFirms,getProCatBrands,postBrands,postProducts,postPurchases,postSales,putFirms,putBrands,putPurchases,putSales,deleteBrands,deleteFirms,deleteProducts,deletePurchases,deleteSales}
 }
 
 export default useStockCalls
