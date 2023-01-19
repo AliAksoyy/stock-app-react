@@ -109,7 +109,7 @@ console.log(info)
                 value={info?.price || ""}
                 onChange={handleChange}
                 />
-                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>SAVE FİRM</Button>
+                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>ADD NEW PURCHASE</Button>
             </Box>
         </Box>
       </Modal>

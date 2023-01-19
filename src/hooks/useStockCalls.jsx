@@ -27,6 +27,7 @@ const useStockCalls = () => {
         const getProducts=()=>getStockData("products")
         const getCategories=()=>getStockData("categories")
         const getPurchases=()=>getStockData("purchases")
+        const getSales=()=>getStockData("sales")
         
 
 
@@ -35,25 +36,27 @@ const useStockCalls = () => {
           
             try {
             await axiosWithToken.post(`stock/${url}/`,info)
-            toastifySuccess(`${url} updateted`)
             getStockData(url)
             } catch (error) {
             console.log(error)
-            toastifyError(`${url} can not be updateted`)
+            
             }
         }
         const postFirms=(info)=>postStockData(info,"firms")
         const postBrands=(info)=>postStockData(info,"brands")
         const postProducts=(info)=>postStockData(info,"products")
         const postPurchases=(info)=>postStockData(info,"purchases")
+        const postSales=(info)=>postStockData(info,"sales")
 
         // TODO Put Data
         const putStockData=async(info,url)=> {
         
             try {
                 await axiosWithToken.put(`stock/${url}/${info.id}/`, info)
+            toastifySuccess(`${url} updateted`)
             getStockData(url)
             } catch (error) {
+                toastifyError(`${url} can not be updateted`)
             console.log(error)
            
             }
@@ -61,6 +64,7 @@ const useStockCalls = () => {
         const putFirms=(info)=>putStockData(info,"firms")
         const putBrands=(info)=>putStockData(info,"brands")
         const putPurchases=(info)=>putStockData(info,"purchases")
+        const putSales=(info)=>putStockData(info,"sales")
         
 
         // TODO Delete Data
@@ -80,10 +84,11 @@ const useStockCalls = () => {
         const deleteBrands=(info)=>deleteStockData(info,"brands")
         const deleteProducts=(info)=>deleteStockData(info,"products")
         const deletePurchases=(info)=>deleteStockData(info,"purchases")
+        const deleteSales=(info)=>deleteStockData(info,"sales")
        
 
 
-  return {getFirms,getProducts,getCategories,getBrands,getPurchases,postFirms,postBrands,postProducts,postPurchases,putFirms,putBrands,putPurchases,deleteBrands,deleteFirms,deleteProducts,deletePurchases}
+  return {getFirms,getProducts,getCategories,getBrands,getPurchases,getSales,postFirms,postBrands,postProducts,postPurchases,postSales,putFirms,putBrands,putPurchases,putSales,deleteBrands,deleteFirms,deleteProducts,deletePurchases,deleteSales}
 }
 
 export default useStockCalls

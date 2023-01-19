@@ -16,16 +16,20 @@ import { useSelector } from 'react-redux';
 
 const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
-    const {postProducts}=useStockCalls()
-  const {categories,brands}=useSelector(state=>state.stock)
-
+    const {getProducts,postSales,putSales}=useStockCalls()
+  const {sales,brands,products}=useSelector(state=>state.stock)
+console.log(info)
     const handleChange=(e)=>{
         const {name,value}=e.target
-        setInfo({...info, [name]:value} )
+        setInfo({...info, [name]:Number(value)} )
     }
     const handleSubmit=(e)=> {
         e.preventDefault()
-        postProducts(info) 
+        if(info.id){
+          putSales(info)
+        }else {
+        postSales(info) 
+        }
         setInfo({})
         setOpen(false)
     }
@@ -40,16 +44,16 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
         <Box sx={modalStyle}>
             <Box sx={flexColumn} component="form" onSubmit={handleSubmit}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+                <InputLabel id="demo-simple-select-label">Brand</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  id="category_id"
-                  name="category_id"
-                  value={info?.category_id || ""}
-                  label="Categories"
+                  id="brand_id"
+                  name="brand_id"
+                  value={info?.brand_id || ""}
+                  label="Brand"
                   onChange={handleChange}
                 >
-                {categories?.map((item)=>{
+                {brands?.map((item)=>{
                  
                   return (
                     <MenuItem  key={item.id} value={item.id}>{item.name}</MenuItem>
@@ -58,15 +62,15 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
                 </Select>
                 </FormControl>
                 <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Brands</InputLabel>
+                <InputLabel id="demo-simple-select-label">Products</InputLabel>
                 <Select
-                  id="brand_id"
-                  name="brand_id"
-                  value={info?.brand_id || ""}
-                  label="Brands"
+                  id="product_id"
+                  name="product_id"
+                  value={info?.product_id || ""}
+                  label="Products"
                   onChange={handleChange}
                 >
-                 {brands?.map((item)=>{
+                 {products?.map((item)=>{
                   return (
                     <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                   )
@@ -74,14 +78,22 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
                 </Select>
                 </FormControl>
                 <TextField
-                label="Product Name"
-                id="name"
-                name="name"
+                label="Quantity"
+                id="quantity"
+                name="quantity"
                 variant="outlined"
-                value={info?.name || ""}
+                value={info?.quantity || ""}
                 onChange={handleChange}
                 />
-                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>ADD NEW PRODUCT</Button>
+                <TextField
+                label="Price"
+                id="price"
+                name="price"
+                variant="outlined"
+                value={info?.price || ""}
+                onChange={handleChange}
+                />
+                <Button type="submit" variant="contained" size="large" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}}>ADD NEW SALE</Button>
             </Box>
         </Box>
       </Modal>
