@@ -18,7 +18,7 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
     const {postPurchases,putPurchases}=useStockCalls()
   const {products,brands,firms}=useSelector(state=>state.stock)
-console.log(info)
+
     const handleChange=(e)=>{
         const {name,value}=e.target
         setInfo({...info, [name]:Number(value)} )

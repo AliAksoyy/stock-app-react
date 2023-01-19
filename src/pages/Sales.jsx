@@ -18,7 +18,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 import useSortedData from '../hooks/useSortedData'
-import PurchasesModal from '../components/modals/PurchasesModal'
+import SalesModal from '../components/modals/SalesModal'
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -26,8 +26,8 @@ import EditIcon from '@mui/icons-material/Edit';
 const Sales = () => {
 
 const {getFirms,getProducts,getBrands,getCategories,getPurchases,getSales,deleteSales}=useStockCalls()
-const {brands,products,sales}=useSelector(state=>state.stock)
-console.log(sales)
+const {brands,sales}=useSelector(state=>state.stock)
+
 
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
@@ -43,8 +43,7 @@ const columnObj={
   price_total:1
 }
 const {handleSort,sortedData,toggle}=useSortedData(sales,columnObj)
-console.log(columnObj)
-console.log(sortedData)
+
 
 useEffect(() => {
   getProducts()
@@ -60,12 +59,12 @@ useEffect(() => {
 const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
 const filteredProducts=sales?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
 const isSelectedProducts=(item)=>selectedProducts.includes(item.product) || selectedProducts.length===0
-console.log(filteredProducts)
+
   return (
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Sales</Typography>
       <Button onClick={()=> setOpen(true)} variant="contained" sx={{backgroundColor:grey[300], "&:hover":{color:"white"}}} >NEW SALES</Button>
-      <PurchasesModal open={open} setOpen={setOpen} info={info} setInfo={setInfo}/>
+      <SalesModal open={open} setOpen={setOpen} info={info} setInfo={setInfo}/>
        <Box sx={selectStyle}>
        <MultiSelectBox
                     handleSelect={ (item) => setSelectedBrands(item) }

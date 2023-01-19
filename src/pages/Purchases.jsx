@@ -27,7 +27,7 @@ const Purchases = () => {
 
 const {getFirms,getProducts,getBrands,getCategories,getPurchases,deletePurchases}=useStockCalls()
 const {brands,products,purchases}=useSelector(state=>state.stock)
-console.log(purchases)
+
 
 const [selectedBrands,setSelectedBrands]=useState([])
 const [selectedProducts,setSelectedProducts]=useState([])
@@ -44,8 +44,7 @@ const columnObj={
   price_total:1
 }
 const {handleSort,sortedData,toggle}=useSortedData(purchases,columnObj)
-console.log(columnObj)
-console.log(sortedData)
+
 
 useEffect(() => {
   getProducts()
@@ -60,7 +59,7 @@ useEffect(() => {
 const isSelectedBrands=(item)=>selectedBrands.includes(item.brand) || selectedBrands.length===0
 const filteredProducts=purchases?.filter((item)=> selectedBrands.includes(item.brand) || selectedBrands.length===0).map((item)=>item)
 const isSelectedProducts=(item)=>selectedProducts.includes(item.product) || selectedProducts.length===0
-console.log(filteredProducts)
+
   return (
     <Box>
       <Typography variant="h4" color="primary.dark" mb={3}>Purchases</Typography>

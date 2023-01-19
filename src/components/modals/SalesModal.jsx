@@ -16,9 +16,9 @@ import { useSelector } from 'react-redux';
 
 const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
-    const {getProducts,postSales,putSales}=useStockCalls()
-  const {sales,brands,products}=useSelector(state=>state.stock)
-console.log(info)
+    const {postSales,putSales}=useStockCalls()
+  const {brands,products}=useSelector(state=>state.stock)
+
     const handleChange=(e)=>{
         const {name,value}=e.target
         setInfo({...info, [name]:Number(value)} )
