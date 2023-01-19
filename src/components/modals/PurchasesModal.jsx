@@ -97,7 +97,7 @@ console.log(firms)
                 id="quantity"
                 name="quantity"
                 variant="outlined"
-                value={info?.quantity || ""}
+                value={Number(info?.quantity) || ""}
                 onChange={handleChange}
                 />
                 <TextField
