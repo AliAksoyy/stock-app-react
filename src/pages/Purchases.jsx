@@ -150,7 +150,7 @@ console.log(filteredProducts)
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+             <TableBody>
               {sortedData?.filter((item)=>isSelectedBrands(item)).filter((item)=>isSelectedProducts(item)).map((purchase) => (
                 <TableRow
                   key={purchase.id}
@@ -175,7 +175,7 @@ console.log(filteredProducts)
                   </TableCell>  
                 </TableRow>
               ))}
-            </TableBody>    
+            </TableBody>     
           </Table>
         </TableContainer>
       )}

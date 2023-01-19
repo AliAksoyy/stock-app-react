@@ -18,17 +18,18 @@ const ProductsModal = ({info,setInfo,open,setOpen}) => {
 
     const {postPurchases,putPurchases}=useStockCalls()
   const {products,brands,firms}=useSelector(state=>state.stock)
-console.log(firms)
+console.log(info)
     const handleChange=(e)=>{
         const {name,value}=e.target
-        setInfo({...info, [name]:value} )
+        setInfo({...info, [name]:Number(value)} )
     }
     const handleSubmit=(e)=> {
         e.preventDefault()
         if(info.id){
           putPurchases(info)
-        }
+        }else {
         postPurchases(info) 
+        }
         setInfo({})
         setOpen(false)
     }
@@ -97,7 +98,7 @@ console.log(firms)
                 id="quantity"
                 name="quantity"
                 variant="outlined"
-                value={Number(info?.quantity) || ""}
+                value={info?.quantity || ""}
                 onChange={handleChange}
                 />
                 <TextField

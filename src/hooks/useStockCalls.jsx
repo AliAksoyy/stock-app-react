@@ -1,5 +1,6 @@
 import { useDispatch} from 'react-redux'
 import { fetchFail, fetchStart, getSuccess } from '../features/stockSlice'
+import { toastifyError, toastifySuccess } from '../helpers/toastify'
 import useAxios from './useAxios'
 
 
@@ -34,9 +35,11 @@ const useStockCalls = () => {
           
             try {
             await axiosWithToken.post(`stock/${url}/`,info)
+            toastifySuccess(`${url} updateted`)
             getStockData(url)
             } catch (error) {
             console.log(error)
+            toastifyError(`${url} can not be updateted`)
             }
         }
         const postFirms=(info)=>postStockData(info,"firms")
@@ -65,9 +68,11 @@ const useStockCalls = () => {
 
             try {
                 await axiosWithToken.delete(`stock/${url}/${info.id}/`)
+                toastifySuccess(`${url} successfully deleted`)
             getStockData(url)
             } catch (error) {
             console.log(error)
+            toastifyError(`${url} can not be deleted`)
             
             }
         }
