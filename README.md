@@ -1,70 +1,173 @@
-# Getting Started with Create React App
+<h1 align="center">Stock App React</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3>Overview</h3>
+👨‍💻 In this project I mastered React skills. I used mainly REACT and Material UI, React Router, Redux, Redux/Toolkit, Redux/Persist, Axios Instance and Interceptors, React/Tremor, and Formik/Yup. You can see visual demo of the website below. The objective is to build out this real-like webpage and make it looking as professional as possible..
+<hr>
 
-## Available Scripts
+## ✨ Demo
 
-In the project directory, you can run:
+ <p align="center">
+  <img width="700" align="center" src="./public/gif/maker.gif" alt="demo"/>   
+</p>
 
-### `yarn start`
+<!-- ![Alt text](https://giphy.com/peekasso)  -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<hr>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[📍You can see the live site from here!](https://react-blog-app-rho.vercel.app/)
 
-### `yarn test`
+<!-- ------------------------------------------------------ -->
+````
+## Project Skeleton 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- MyBlog App (folder)
+|
+|----readme.md         
+SOLUTION
+├── public
+│     └── index.html
+├── src
+│    ├── router
+│    │       ├── AppRouter.js
+│    │       └── PrivateRouter.js
+│    ├── components
+│    │       ├── card
+|    |       |    |----- BrandCards.jsx
+|    |       |    |----- FirmCards.jsx
+│    │       |   modals
+│    │       |      |---- BrandsModal.jsx
+│    │       |      |---- FirmsModal.jsx
+|    |       |      |---- ProductsModal.jsx
+|    |       |      |---- PurchasesMOdal.jsx
+|    |       |      |---- SalesModal.jsx
+│    │       |---- KpiCard.jsx
+│    │       |---- LineChars.jsx
+│    │       |---- LoginForm.jsx
+│    │       |---- MenuListItem.jsx
+│    │       |---- RegisterForm.jsx
+│    ├── features
+│    │       ├── authSlice.js
+│    │       └── stockSlice.js
+│    ├── helpers
+│    │       └── toastNotify.js
+│    ├── pages
+│    │       ├── Dashboard.jsx
+│    │       ├── Brands.jsx
+│    │       ├── Login.jsx
+│    │       ├── Firms.jsx
+│    │       ├── Home.jsx
+│    │       ├── Register.jsx
+│    │       └── Products.jsx
+│    │       └── Sales.jsx
+│    │       └── Purchases.jsx
+│    ├── assets
+│    │       └── [images]
+│    ├── app
+│    │    └── store.jsx
+│    ├── styles
+│    │    └── globalStyle.js
+│    ├── hooks
+│    │    └── useAuthCalls.jsx
+│    │    └── useAxios.jsx
+│    │    └── useSortedData.jsx
+│    │    └── useStockCalls.jsx
+│    ├── App.js
+│    ├── index.js
+│    └── index.css
+├── package.json
+└── yarn.lock
+```
+````
+<!-- --------------------------------------- -->
+### Purpose of Project;
 
-### `yarn build`
+👨‍💻 The main aim of this project is to improve my <b>REACT Custom Hooks, Redux and Redux/Toolkit Component/JS/git commands (push, pull, commit, add etc.) skills and responsive design abilities</b>.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Objective
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🎯
 
-### `yarn eject`
+### The project covers;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- HTML / Semantic elements 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Material UI - React Toastify 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- REACT / Components , Props , Hooks , Router, Redux  etc.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Formik - Yup
 
-## Learn More
+- Redux/Persistor
+  
+- Axios Instance and Interceptor
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Authentication 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### At the end of the project, i will be able to;
 
-### Code Splitting
+- improve coding skills within HTML & CSS & JS & REACT.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- use git commands (push, pull, commit, add etc.) and Github as Version Control System.
 
-### Analyzing the Bundle Size
+<hr>
+<h3>Used in this project</h3>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+👉 HTML tags, Comments, CSS styling, REACT.js etc.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<hr>
+<h3>How to Use the Project</h3>
+<span>First download a code editor </span>
+<br><span>Second open the files : </span><a href='https://github.com/AliAksoyy/stock-app-react'>My Docs</a>
+<br><span>You should open vscode terminal and write "yarn or npm install" to make the project alive </span>
+<br><span>You can use this tutorial : </span><a href='https://www.youtube.com/watch?v=fJEbVCrEMSE'>VS Code tutorial</a>
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<!-- ------------------------------------------------------------------------- -->
+<!-- ## 🚀 Usage
 
-### Deployment
+Make sure you have [npx](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since npm `5.2.0`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Just run the following command at the root of your project and answer questions:
 
-### `yarn build` fails to minify
+```sh
+npx readme-md-generator
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Or use default values for all questions (`-y`):
+
+```sh
+npx readme-md-generator -y
+```
+
+Use your own `ejs` README template (`-p`):
+
+```sh
+npx readme-md-generator -p path/to/my/own/template.md
+```
+
+You can find [ejs README template examples here](https://github.com/kefranabg/readme-md-generator/tree/master/templates). -->
+
+<!-- -------------------------------------------------------------------------- -->
+
+<!-- ## Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors"><img src="https://opencollective.com/readme-md-generator/contributors.svg?width=890&button=false" /></a>
+ -->
+
+<!-- ## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome.<br />
+Feel free to check [issues page](https://github.com/kefranabg/readme-md-generator/issues) if you want to contribute.<br />
+[Check the contributing guide](./CONTRIBUTING.md).<br /> -->
+
+
+<!-- ------------------------------------------------------------------------------------- -->
+## Author
+
+👤 **Ali Aksoy**
+
+- Twitter: [@alifeyza4017](https://twitter.com/alifeyza4017)
+- Github: [@AliAksoyy](https://github.com/AliAksoyy)
