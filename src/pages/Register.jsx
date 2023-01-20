@@ -81,7 +81,7 @@ export default function Register() {
               </Formik>
               <Grid container justifyContent="center" >
                 <Grid item >
-                  <Link  color="secondary"  href="/login" variant="body2">
+                  <Link  color="secondary"  href="/" variant="body2">
                     Already have an account ? Sign in
                   </Link>
                 </Grid>

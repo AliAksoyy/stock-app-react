@@ -8,7 +8,7 @@ const {currentUser}=useSelector(state=>state.auth)
 
   return (
     <div>
-     { currentUser ? <Outlet /> : <Navigate to="/login" /> }
+     { currentUser ? <Outlet /> : <Navigate to="/" /> }
     </div>
   )
 }
