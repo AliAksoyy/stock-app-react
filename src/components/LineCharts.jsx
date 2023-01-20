@@ -3,6 +3,7 @@ import { Card, Title, LineChart } from "@tremor/react";
 import  Grid  from '@mui/material/Grid';
 import  Paper  from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
+import { Box } from '@mui/material';
 
 
 const LineCharts = () => {
@@ -30,12 +31,12 @@ const LineCharts = () => {
 
  
   const dataFormatter = (number) =>
-  `${Intl.NumberFormat("us").format(number).toString()}`;
+  `$${Intl.NumberFormat("us").format(number).toString()}`;
   return (
     <Grid container justifyContent="center" gap={2}>
-      <Grid item xs={12} md={5} >
-      <Paper elevation={4}>
-          <Card sx={{p:2}}>
+      <Grid item xs={12} md={5}  >
+      <Paper elevation={4} >
+          <Card >
               <Title>Daily Sales (USD)</Title>
               <LineChart
                 data={salesData}
@@ -44,7 +45,7 @@ const LineCharts = () => {
                 colors={["blue"]}
                 valueFormatter={dataFormatter}  
                 marginTop="mt-6"         
-                yAxisWidth="w-10"
+                yAxisWidth="w-13"
               />
         </Card>
         </Paper>
@@ -60,7 +61,7 @@ const LineCharts = () => {
                 colors={["red"]}
                 valueFormatter={dataFormatter}  
                 marginTop="mt-6"         
-                yAxisWidth="w-10"
+                yAxisWidth="w-13"
               />
         </Card>
         </Paper>

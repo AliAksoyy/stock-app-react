@@ -90,7 +90,7 @@ const navigate=useNavigate()
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
           PaperProps={{
-            sx:{backgroundColor:blueGrey[900]}
+            sx:{backgroundColor:blueGrey[100]}
           }}
         >
           {drawer}

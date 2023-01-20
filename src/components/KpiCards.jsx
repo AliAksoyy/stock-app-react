@@ -57,7 +57,11 @@ export default function KpiCards() {
        
         <Grid container justifyContent="center" gap={3} mb={3}>
         { kpiData.map((item) => (
-            <Grid item key={ item.title }>
+            <Grid item key={ item.title }  xs={12}
+          sm={10}
+          md={5}
+          lg={3}
+          sx={{ minWidth: "250px" }}>
             <Paper elevation={6}>
             <Card decoration="top"  decorationColor="indigo">
              
